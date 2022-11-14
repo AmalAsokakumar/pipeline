@@ -3,11 +3,15 @@ pipeline{
     tools {
         maven 'my-mvn'
     }
+    environment{
+        TEST = 'test'
+    }
     stages{
         stage('build'){
             steps{
                 echo "building the java app "
-                sh 'mvn clean package' 
+                sh 'printenv'
+                //sh 'mvn clean package' 
             }
         }
     }
