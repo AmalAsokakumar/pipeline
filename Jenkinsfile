@@ -9,12 +9,12 @@ agent any
                 //git branch: 'pipeline', credentialsId: 'git-cred', url: 'https://github.com/comrider/pipeline.git'
                 git branch: 'pipeline', credentialsId: 'git-cred', url: 'https://github.com/comrider/pipeline.git'
                 echo 'git repo found'
-                sh 'mvn clean sonar:sonar'
+                //sh 'mvn clean sonar:sonar'
             }
         }
         stage('maven install'){
             steps{
-                sh 'mvn clean install'
+                sh 'mvn clean install- DskipTests'
             }
             post{
                 success{
