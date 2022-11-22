@@ -85,5 +85,10 @@ agent any
                 }
             }
         }
+        stage('dockerfile')
+            steps{
+                echo "building the dockerimage..."
+                sh 'docker build -f Dockerfile -t nginx_file'
+            }
     }   
 }
