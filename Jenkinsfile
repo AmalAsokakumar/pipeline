@@ -67,8 +67,8 @@ agent any
             steps{
                 withSonarQubeEnv(installationsName, 'sq1'){
                     sh 'mvn clean sonar:sonar'
+                }
             }
         }
-    }
+    }   
 }
-
