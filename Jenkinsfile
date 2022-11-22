@@ -8,6 +8,12 @@ agent any
             steps{
                 sh 'mvn clean install'
             }
+            post{
+                success{
+                    echo 'bild success'
+                    sh 'archiveArtifacts artifacrs: '**/*.jar'
+                }
+            }
         }
     }
 }
