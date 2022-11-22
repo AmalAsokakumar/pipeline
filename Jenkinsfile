@@ -1,17 +1,31 @@
 pipeline{
-    agent any
-    tools {
-        maven 'my-mvn'
-    }
-    environment{
-        TEST = 'test'
+agent any
+    tools{
+        maven 'my-maven'
     }
     stages{
-        stage('build'){
+        stage ('fetch code'){
             steps{
-                echo "building the java app "
-                sh 'printenv'
-                //sh 'mvn clean package' 
+                //git branch: 'pipeline', credentialsId: 'git-cred', url: 'https://github.com/comrider/pipeline.git'
+                git branch: 'pipeline', credentialsId: 'git-cred', url: 'https://github.com/comrider/pipeline.git'
+                echo 'git repo found'
+                //sh 'mvn clean sonar:sonar'
+            }
+        }
+        stage('maven install'){
+            steps{
+                sh 'mvn clean install -DskipTests'
+            }
+            post{
+                success{
+                    echo 'bild success'
+                    archiveArtifacts artifacts: '**/*.jar'
+                }
+            }
+        }
+        stage('unit test'){
+            steps{
+                sh 'mvn test'
             }
         }
     }
