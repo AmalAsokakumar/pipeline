@@ -88,7 +88,8 @@ agent any
         stage('dockerfile'){
             steps{
                 echo "building the dockerimage..."
-                sh 'docker build -t nginx_file .'
+                // sh 'docker build -t nginx_file .'
+                sh 'docker pull ubuntu:latest'
             }
         }
     }   
