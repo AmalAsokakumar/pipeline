@@ -1,17 +1,17 @@
 pipeline{
-    agent any
-    tools {
-        maven 'my-mvn'
-    }
-    environment{
-        TEST = 'test'
+agent any
+    tools{
+        maven 'maven'
     }
     stages{
-        stage('build'){
+        stage('maven install'){
+            agent{
+                docker{
+                    image 'maven:3.5.0'
+                }
+            }
             steps{
-                echo "building the java app "
-                sh 'printenv'
-                //sh 'mvn clean package' 
+                sh 'mvn clean install'
             }
         }
     }
