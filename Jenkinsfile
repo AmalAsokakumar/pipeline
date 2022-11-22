@@ -11,7 +11,7 @@ agent any
             post{
                 success{
                     echo 'bild success'
-                    sh 'archiveArtifacts artifacrs: '**/*.jar'
+                    archiveArtifacts artifacrs: '**/*.jar'
                 }
             }
         }
