@@ -7,8 +7,8 @@ agent any
         stage ('fetch code'){
             steps{
                 //git branch: 'pipeline', credentialsId: 'git-cred', url: 'https://github.com/comrider/pipeline.git'
-                git branch: 'pipeline', credentialsId: 'git-cred', url: 'https://github.com/comrider/pipeline.git'
-                echo 'git repo found'
+               // git branch: 'pipeline', credentialsId: 'git-cred', url: 'https://github.com/comrider/pipeline.git'
+                echo 'cloning of git repo'
                 //sh 'mvn clean sonar:sonar'
             }
         }
@@ -88,8 +88,8 @@ agent any
         stage('dockerfile'){
             steps{
                 echo "building the dockerimage..."
-                // sh 'docker build -t nginx_file .'
-                sh 'docker pull ubuntu:latest'
+                sh 'docker build -t nginx_file .'
+                //sh 'docker pull ubuntu:latest'
             }
         }
     }   
