@@ -92,5 +92,17 @@ agent any
                 //sh 'docker pull ubuntu:latest'
             }
         }
+        stage('docker push'){
+            steps{
+                withCredentials([usernamePassword(credentialsId: 'docker_container', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                    sh 'docker build -t nanajanashia/demo-app:jma-2.0 .'
+                    sh "echo $PASS | docker login -u $USER --password-stdin"
+                    sh 'docker push nanajanashia/demo-app:jma-2.0'
+                }
+                // withCredentials([usernamePassword(credentialsId:'docker_container', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]){
+                //     sh "docker login -u ${env.dockerHubUser} -p 
+                // }
+            }
+        }
     }   
 }
