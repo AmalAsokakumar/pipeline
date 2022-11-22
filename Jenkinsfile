@@ -13,13 +13,18 @@ agent any
         }
         stage('maven install'){
             steps{
-                sh 'mvn clean install'
+                sh 'mvn install -DskipTests'
             }
             post{
                 success{
                     echo 'bild success'
                     archiveArtifacts artifacts: '**/*.jar'
                 }
+            }
+        }
+        stage('unit test'){
+            steps{
+                sh 'mvn test'
             }
         }
     }
