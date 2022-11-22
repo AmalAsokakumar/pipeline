@@ -93,11 +93,16 @@ agent any
         }
         stage('docker push'){
             steps{
-                withCredentials([usernamePassword(credentialsId: 'docker_container', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                    //sh 'docker build -t nginx_file .'
-                    sh "echo $PASS | docker login -u $USER --password-stdin"
-                    sh 'docker push comrider/nginx_file'
+                script {
+                    docker.withRegistry( '', docker_container ) {
+                    dockerImage.push()
+                    }
                 }
+                // withCredentials([usernamePassword(credentialsId: 'docker_container', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                //     //sh 'docker build -t nginx_file .'
+                //     sh "echo $PASS | docker login -u $USER --password-stdin"
+                //     sh 'docker push comrider/nginx_file'
+                // }
                 // withCredentials([usernamePassword(credentialsId:'docker_container', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]){
                 //     sh "docker login -u ${env.dockerHubUser} -p 
             }
