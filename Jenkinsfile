@@ -13,7 +13,7 @@ agent any
         }
         stage('maven install'){
             steps{
-                sh 'mvn install -DskipTests'
+                sh 'mvn install clean'
             }
             post{
                 success{
