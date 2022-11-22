@@ -63,8 +63,8 @@ agent any
                         waitForQualityGate abortPipeline: true
                     }
                 }
-                }
             }
         }
     }
 }
+
