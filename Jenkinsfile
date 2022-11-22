@@ -105,8 +105,9 @@ agent any
                 // }
                 // withCredentials([usernamePassword(credentialsId:'docker_container', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]){
                 //     sh "docker login -u ${env.dockerHubUser} -p 
-                withCredentials([usernamePassword(credentialsId: 'docker_container', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                withCredentials([usernamePassword(credentialsId: 'docker_container', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                     // sh 'docker build -t nanajanashia/demo-app:jma-2.0 .'
+                    sh 'docker build -t comrider/nginx_file .'
                     sh "echo $PASS | docker login -u $USER --password-stdin"
                     sh 'docker push comrider/nginx_file'
                 }
