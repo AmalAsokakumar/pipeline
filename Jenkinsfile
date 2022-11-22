@@ -65,7 +65,7 @@ agent any
         // }
         stage('sonar scan'){
             steps{
-                withSonarQubeEnv(installationsName, 'sq1'){
+                withSonarQubeEnv(installationName: 'sq1'){
                     sh 'mvn clean sonar:sonar'
                 }
             }
