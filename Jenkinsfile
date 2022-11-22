@@ -46,7 +46,7 @@ agent any
         stage('code analysis with sonarcube'){
             steps{
                 environment{
-                    scanner = tool 'sonar'
+                    scanneHome = tool 'sonar'
                 }
                 steps{
                     withSonarQubeEnv('sq1'){
