@@ -46,6 +46,7 @@ agent any
         stage('code analysis with sonarcube'){
                 environment {
                     scanneHome = tool 'sonar'
+                }
                 steps{
                     withSonarQubeEnv('sq1'){
                     sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
